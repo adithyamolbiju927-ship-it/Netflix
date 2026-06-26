@@ -18,7 +18,7 @@ class _HomescreenState extends ConsumerState<Homescreen> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 50,
-        backgroundColor: Colors.black,
+        backgroundColor: const Color.fromARGB(255, 24, 5, 5),
         title: Image.asset(
           "assets/pngnetflix.png",
           height: 130,

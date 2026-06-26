@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
-import 'package:netfix/view/downloadpage.dart';
+import 'package:netfix/widget/downloadpage.dart';
 import 'package:netfix/view/homescreen.dart';
 
-import 'package:netfix/view/sreach.dart';
+import 'package:netfix/widget/sreach.dart';
 
-// 🔥 StateProvider for index
 final bottomNavProvider = StateProvider<int>((ref) => 0);
 
 class BottomNav extends ConsumerWidget {
@@ -18,9 +17,9 @@ class BottomNav extends ConsumerWidget {
 
     final List<Widget> pages = [
       Homescreen(),
-      Sreach(),
+      Search(),
       DownloadPage(),
-      
+
       const Center(child: Text("Movie Page")),
     ];
 
@@ -50,7 +49,6 @@ class BottomNav extends ConsumerWidget {
             icon: Icon(Icons.download, color: Colors.white),
             label: 'download',
           ),
-         
         ],
       ),
       body: pages[selectedIndex],

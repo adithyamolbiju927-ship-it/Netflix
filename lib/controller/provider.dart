@@ -6,6 +6,7 @@ final serviceprovider = Provider<Service>((ref) {
   return Service();
 });
 
+
 final nowplayingpro = FutureProvider<List<Model>>((ref) async {
   try {
     final service = ref.watch(serviceprovider);
@@ -44,3 +45,4 @@ final tvshowprovider = FutureProvider<List<Model>>((ref) async {
     throw Exception(e);
   }
 });
+

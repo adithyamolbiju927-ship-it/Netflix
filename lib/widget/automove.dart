@@ -7,7 +7,6 @@ import 'package:netfix/widget/shimer.dart';
 
 class AutoSlider extends ConsumerStatefulWidget {
   const AutoSlider({super.key});
-
   @override
   ConsumerState<AutoSlider> createState() => _AutoSliderState();
 }
@@ -16,11 +15,9 @@ class _AutoSliderState extends ConsumerState<AutoSlider> {
   final PageController controller = PageController();
   int currentPage = 0;
   Timer? timer;
-
   @override
   void initState() {
     super.initState();
-
     timer = Timer.periodic(const Duration(seconds: 5), (Timer timer) {
       currentPage++;
 
@@ -38,10 +35,10 @@ class _AutoSliderState extends ConsumerState<AutoSlider> {
     timer?.cancel();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     final movies = ref.watch(nowplayingpro);
-
     return movies.when(
       data: (data) {
         return SizedBox(
@@ -51,7 +48,6 @@ class _AutoSliderState extends ConsumerState<AutoSlider> {
             itemCount: data.length,
             itemBuilder: (context, index) {
               final movie = data[index];
-
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Stack(
@@ -89,10 +85,11 @@ class _AutoSliderState extends ConsumerState<AutoSlider> {
                                   backgroundColor: Colors.white,
                                 ),
                                 child: const Row(
+                                  mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(Icons.play_arrow, color: Colors.black),
-                                    SizedBox(width: 10),
+                                    SizedBox(width: 4),
                                     Text(
                                       "Play",
                                       style: TextStyle(
@@ -123,15 +120,23 @@ class _AutoSliderState extends ConsumerState<AutoSlider> {
                                   backgroundColor: Colors.white,
                                 ),
                                 child: const Row(
+                                  mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(Icons.download, color: Colors.black),
-                                    SizedBox(width: 10),
-                                    Text(
-                                      "Download",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
+                                    Icon(
+                                      Icons.download,
+                                      color: Colors.black,
+                                      size: 18,
+                                    ),
+                                    SizedBox(width: 4),
+                                    Flexible(
+                                      child: Text(
+                                        "Download",
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -149,8 +154,6 @@ class _AutoSliderState extends ConsumerState<AutoSlider> {
           ),
         );
       },
-
-      // loading: () => const Center(child: CircularProgressIndicator()),
       loading: () => const ListShimmer(),
       error: (error, stack) => Center(child: Text(error.toString())),
     );

@@ -9,7 +9,7 @@ class Service {
       queryParameters: {"api_key": Urls.apiKey},
     ),
   );
-
+ 
   Future<List<Model>> getnowPlaying() async {
     try {
       final response = await dio.get(Urls.nowPlaying);
